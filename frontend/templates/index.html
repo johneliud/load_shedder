@@ -6,17 +6,47 @@
 
     <link rel="stylesheet" href="/frontend/static/css/style.css" />
 
-    <title>Load Shedder</title>
+    <title>Load Shedder Demo</title>
   </head>
   <body>
-    <h1>Load Shedder</h1>
+    <div class="container">
+      <h1>Load Shedder Demo</h1>
+      
+      <div class="demo-section">
+        <h2>Simulate Load</h2>
+        <p>Choose the number of concurrent requests to simulate:</p>
+        
+        <div class="request-options">
+          <button class="request-btn" data-count="10">10 Requests</button>
+          <button class="request-btn" data-count="25">25 Requests</button>
+          <button class="request-btn" data-count="50">50 Requests</button>
+          <button class="request-btn" data-count="75">75 Requests</button>
+          <button class="request-btn" data-count="100">100 Requests</button>
+        </div>
+        
+        <div class="current-load">
+          <span>Current Load: <span id="currentLoad">0</span> requests</span>
+        </div>
+      </div>
 
-    <div class="controls">
-      <button id="essential">Essential Service</button>
-      <button id="nonEssential">Non-Essential Service</button>
+      <div class="demo-section">
+        <h2>Test Services</h2>
+        <div class="controls">
+          <button id="essential" class="service-btn essential">Essential Service</button>
+          <button id="nonEssential" class="service-btn non-essential">Non-Essential Service</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>Results</h2>
+        <div id="output" class="output"></div>
+      </div>
+
+      <div class="demo-section">
+        <h2>About This Demo</h2>
+        <p>This demonstrates load shedding: when requests exceed 50, the non-essential service becomes unavailable while the essential service remains operational.</p>
+      </div>
     </div>
-
-    <p id="output"></p>
 
     <script src="/frontend/static/js/script.js"></script>
   </body>
