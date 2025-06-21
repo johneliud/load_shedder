@@ -54,6 +54,8 @@ async function testEssentialService() {
   try {
     const res = await fetch('/essential');
     const text = await res.text();
+    
+    console.log("res: ", res);
 
     if (res.ok) {
       output.className = 'output success';
@@ -76,6 +78,8 @@ async function testNonEssentialService() {
     const res = await fetch('/non-essential');
     const text = await res.text();
 
+    console.log("res: ", res);
+    
     if (res.status === 503) {
       output.className = 'output error';
       output.textContent = `Load shedding active - service temporarily unavailable due to high load.`;
@@ -95,6 +99,7 @@ async function testNonEssentialService() {
 requestBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     const count = parseInt(btn.dataset.count);
+    console.log("count: ", count);
     simulateLoad(count);
   });
 });
