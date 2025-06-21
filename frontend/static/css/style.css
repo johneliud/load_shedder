@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Geist Mono', sans-serif;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+body {
+  display: grid;
+  align-items: center;
+  width: 50%;
+  margin: 5rem auto;
+}
+
+h1 {
+  margin: 5rem auto;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls button {
+  padding: 1rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#output {
+  margin: 5rem auto;
+  font-size: 2rem;
+}
