@@ -12,6 +12,7 @@ func main() {
 	http.HandleFunc("/", handlers.IndexHandler)
 	http.HandleFunc("/essential", utils.ShedWrapper(handlers.EssentialHandler, false))
 	http.HandleFunc("/non-essential", utils.ShedWrapper(handlers.NonEssentialHandler, true))
+	http.HandleFunc("/simulate-load", utils.ShedWrapper(handlers.SimulateLoadHandler, true))
 
 	fs := http.FileServer(http.Dir("./frontend"))
 	http.Handle("/frontend/", http.StripPrefix("/frontend/", fs))
