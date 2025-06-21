@@ -8,7 +8,7 @@ import (
 
 func ShedWrapper(h http.HandlerFunc, canShed bool) http.HandlerFunc {
 	var (
-		maxRequests     = int32(10) // Maximum concurrent allowed requests
+		maxRequests     = int32(50) // Maximum concurrent allowed requests
 		currentRequests int32       // Counter for active requests
 	)
 
