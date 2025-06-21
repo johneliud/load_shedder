@@ -8,5 +8,5 @@ import (
 
 func EssentialHandler(w http.ResponseWriter, r *http.Request) {
 	time.Sleep(100 * time.Millisecond)
-	fmt.Fprintln(w, "This is a critical service and always available.")
+	fmt.Fprintln(w, "Essential service responded successfully!\nThis critical service is always available, even under high load.")
 }
