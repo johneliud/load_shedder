@@ -35,14 +35,13 @@ async function simulateLoad(requestCount) {
 
   btn.textContent = `Active (${requestCount} requests)`;
 
-  // Wait for all requests to complete (they take 2 seconds each)
+  // Wait for all requests to complete
   try {
     await Promise.all(promises);
   } catch (e) {
     // Ignore errors
   }
 
-  // Reset after simulation completes
   simulatedRequests = 0;
   updateLoadDisplay();
   btn.textContent = originalText;
@@ -55,7 +54,7 @@ async function testEssentialService() {
   output.textContent = 'Testing essential service...';
 
   try {
-    const res = await fetch('/essential');
+    const res = await fetch(`/essential?simulatedLoad=${simulatedRequests}`);
     const text = await res.text();
 
     if (res.ok) {
@@ -76,18 +75,18 @@ async function testNonEssentialService(event) {
   output.textContent = 'Testing non-essential service...';
 
   try {
-    const res = await fetch('/non-essential');
+    const res = await fetch(`/non-essential?simulatedLoad=${simulatedRequests}`);
     const text = await res.text();    
 
-    if (res.status === 503 && simulatedRequests > 50) {
+    if (res.status === 503) {
       output.className = 'output error';
-      output.textContent = `Load shedding active - service temporarily unavailable due to high load.`;
-    } else if (res.ok && simulatedRequests > 50) {
-      output.className = 'output error';
-      output.textContent = `Load shedding active - service temporarily unavailable due to high load. Priority given to essential services`;
+      output.textContent = `${text}`;
+    } else if (res.ok) {
+      output.className = 'output success';
+      output.textContent = `${text}`;
     } else {
       output.className = 'output error';
-      output.textContent = `(${res.status})\n${text}`;
+      output.textContent = `${text}`;
     }
   } catch (error) {
     output.className = 'output error';
