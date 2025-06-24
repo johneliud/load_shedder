@@ -6,7 +6,7 @@ import (
 )
 
 func SimulateLoadHandler(w http.ResponseWriter, r *http.Request) {
-	// Simulate some processing time to make the load simulation more realistic
-	time.Sleep(50 * time.Millisecond)
+	// Simulate longer processing time to maintain load for demo purposes
+	time.Sleep(2 * time.Second)
 	w.WriteHeader(http.StatusOK)
 }
