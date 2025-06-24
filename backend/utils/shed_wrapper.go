@@ -6,12 +6,12 @@ import (
 	"sync/atomic"
 )
 
-func ShedWrapper(h http.HandlerFunc, canShed bool) http.HandlerFunc {
-	var (
-		maxRequests     = int32(50) // Maximum concurrent allowed requests
-		currentRequests int32       // Counter for active requests
-	)
+var (
+	maxRequests     = int32(50) // Maximum concurrent allowed requests
+	currentRequests int32       // Global counter for active requests shared across all handlers
+)
 
+func ShedWrapper(h http.HandlerFunc, canShed bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Atomically check and increase current requests
 		if atomic.AddInt32(&currentRequests, 1) > maxRequests {
